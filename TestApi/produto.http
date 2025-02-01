@@ -1,10 +1,26 @@
+###
 GET http://localhost:8080/produto
+
+###
+GET http://localhost:8080/produto/1
+
+###
+DELETE http://localhost:8080/produto/2
 
 ###
 POST http://localhost:8080/produto
 Content-Type: application/json
 
 {
-    "nome": "Sousa Oliveira",
-    "preco": 200
+    "nome": "Xiaomi X-3 pro",
+    "preco": 1900
+}
+
+###
+PATCH http://localhost:8080/produto/1
+Content-Type: application/json
+
+{
+    "nome": "tv 43",
+    "preco": 250
 }
