@@ -1,0 +1,6 @@
+
+# senha:: Sn9HBgUQWzGmGGMd
+
+DATABASE_URL=postgresql://postgres.kuoxmpywenperqqkisxz:Sn9HBgUQWzGmGGMd@aws-0-us-west-1.pooler.supabase.com:6543/postgres
+
+DIRECT_URL=postgresql://postgres.kuoxmpywenperqqkisxz:Sn9HBgUQWzGmGGMd@aws-0-us-west-1.pooler.supabase.com:5432/postgres
