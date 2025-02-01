@@ -8,6 +8,8 @@
 * Prisma Import
 
 * Client plugin
+
+<hr />
 #### Criando Api Nest
 ```
 npx nest new app03
