@@ -1,5 +1,8 @@
 ### Passo a passo API Nest + Supabase
 
+<br />
+<hr />
+
 #### 01 Apps Ferramentas
 * nodejs
 * vscode
