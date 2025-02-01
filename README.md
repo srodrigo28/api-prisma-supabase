@@ -16,7 +16,7 @@
 npx nest new app03
 ```
 
-#### 04 Dependências
+#### 04 Dependências PRISMA ORM
 ```
 npm install prisma --save-dev
 ```
@@ -33,42 +33,63 @@ npm install @prisma/client
 npx nest g module db
 ```
 
-#### 05 criar o prisma.service.ts
-```
-import { Global, Injectable, OnModuleInit } from "@nestjs/common";
-import { PrismaClient } from "@prisma/client";
+<hr />
+<br />
 
-@Global()
-@Injectable()
-export class PrismaService extends PrismaClient implements OnModuleInit{
-    async onModuleInit() {
-        await this.$connect();
-    }
-}
+<summary> <h3> 05 Criando o prisma.service.ts </h3> </summary>
+
+<details>
+
+  ```
+  import { Global, Injectable, OnModuleInit } from "@nestjs/common";
+  import { PrismaClient } from "@prisma/client";
+
+  @Global()
+  @Injectable()
+  export class PrismaService extends PrismaClient implements OnModuleInit{
+      async onModuleInit() {
+          await this.$connect();
+      }
+  }
+  ```
+</details>
+
+<hr />
+  
+<summary> <h3> 06 editar o db.module.ts </h3> </summary>
+
+<details>
+
+  ```
+  import { Module } from '@nestjs/common';
+  import { PrismaService } from './prisma.service'; 
+
+  @Module({
+      providers: [PrismaService],
+      exports: [PrismaService]
+  })
+  export class DbModule {}
 ```
 
-#### 06 editar o db.module.ts
-```
-import { Module } from '@nestjs/common';
-import { PrismaService } from './prisma.service'; 
+</details>
 
-@Module({
-    providers: [PrismaService],
-    exports: [PrismaService]
-})
-export class DbModule {}
-```
+<hr />
 
-#### 07 prisma/shema.prisma
+<summary> <h3> 07 prisma/shema.prisma </h3> </summary>
 
-* modelo de conexão com postgrees :: exemplo com supabase
-```
-datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
-}
-```
+<details>
+
+  * modelo de conexão com postgrees :: exemplo com supabase
+  ```
+  datasource db {
+    provider  = "postgresql"
+    url       = env("DATABASE_URL")
+    directUrl = env("DIRECT_URL")
+  }
+  ```
+</details>
+
+<hr />
 
 <summary> <h3> 08 Primeiro Entidade Produto </h3> </summary>
 
