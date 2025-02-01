@@ -1,0 +1,10 @@
+GET http://localhost:8080/produto
+
+###
+POST http://localhost:8080/produto
+Content-Type: application/json
+
+{
+    "nome": "Sousa Oliveira",
+    "preco": 200
+}
