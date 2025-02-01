@@ -1,4 +1,4 @@
-### Passo a passo API Nest + Supabase
+### Passo a passo API Nest + PostgresSQL + Supabase
 
 <br />
 <hr />
@@ -17,23 +17,39 @@
 <hr />
 
 #### 03 Criando Api Nest
+* verificar se tem a versão do nodejs >= 18
+```
+node --version
+```
+
+* instalar o comandline do nest no terminal
+```
+npm install -g @nestjs/cli
+```
+
+* criando sua api
 ```
 npx nest new app03
 ```
 
 #### 04 Dependências PRISMA ORM
+
+* Instalando o primaORM
 ```
 npm install prisma --save-dev
 ```
 
+* Executando o prisma init
 ```
 npx prisma init
 ```
 
+* Instalando o prisma client
 ```
 npm install @prisma/client
 ```
 
+* Criando o modulo de conexão
 ```
 npx nest g module db
 ```
@@ -45,6 +61,7 @@ npx nest g module db
 
 <details>
 
+  * Esse vai ser o serviço que vai criar uma extencia do prisma Client.
   ```
   import { Global, Injectable, OnModuleInit } from "@nestjs/common";
   import { PrismaClient } from "@prisma/client";
@@ -65,16 +82,17 @@ npx nest g module db
 
 <details>
 
+  * Esse modulo carrega o prisma.service.ts para toda aplicação usar como serviço.
   ```
-  import { Module } from '@nestjs/common';
-  import { PrismaService } from './prisma.service'; 
+    import { Module } from '@nestjs/common';
+    import { PrismaService } from './prisma.service'; 
 
-  @Module({
-      providers: [PrismaService],
-      exports: [PrismaService]
-  })
-  export class DbModule {}
-```
+    @Module({
+        providers: [PrismaService],
+        exports: [PrismaService]
+    })
+    export class DbModule {}
+  ```
 
 </details>
 
@@ -92,6 +110,7 @@ npx nest g module db
     directUrl = env("DIRECT_URL")
   }
   ```
+
 </details>
 
 <hr />
@@ -100,6 +119,7 @@ npx nest g module db
 
 <details>
 
+  * Essa entidade representa nossa tabela atraves dela e gerada a tabela
   ```
   model Produto {
     id     Int     @default(autoincrement()) @id
@@ -107,6 +127,7 @@ npx nest g module db
     preco  Float
   }
   ```
+
 </details>
 
 <hr />
@@ -115,12 +136,13 @@ npx nest g module db
 
 <details>
 
-  * exempo env POSTGRESQL e supabase
+  * exempo env POSTGRESQL e supabase representa chaves de acesso ao banco
   ```
   DATABASE_URL=""
 
   DIRECT_URL=""
   ```
+  
 </details>
 
 <hr />
@@ -128,9 +150,10 @@ npx nest g module db
 <summary> <h3> 10 Primeiro Migrate </h3> </summary>
 
 <details>
-```
-npx prisma migrate dev
-```
+  
+  ```
+  npx prisma migrate dev
+  ```
 
 </details>
 
@@ -318,7 +341,7 @@ npx prisma migrate dev
   
   ```
   import { NestFactory } from '@nestjs/core';
-  import { AppModule } from './app/app.module';
+  import { AppModule } from './app.module';
 
   async function bootstrap() {
                                         // liberado acesso externo
